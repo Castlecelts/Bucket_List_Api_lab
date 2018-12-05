@@ -11,6 +11,13 @@ BucketItem.prototype.bindEvents = function () {
     console.log("sdssddsdsd", event.detail);
     this.postActivity(event.detail);
   });
+  PubSub.subscribe('ActivityGridView:activity-destroy-by-id', (event)=>{
+    this.request.delete(event.detail)
+    .then((activities) => {
+        PubSub.publish('BucketItem:data-loaded', activities);
+    })
+    .catch(console.error);
+  });
 };
 
 BucketItem.prototype.getData = function () {

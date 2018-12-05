@@ -9,6 +9,12 @@ ActivityGridView.prototype.bindEvents = function () {
   PubSub.subscribe('BucketItem:data-loaded', (event) => {
     this.render(event.detail);
   })
+  this.container.addEventListener('click', (event) => {
+    console.log(event.target);
+    const id = event.target.value;
+    console.log(id);
+    PubSub.publish('ActivityGridView:activity-destroy-by-id', id);
+  })
 };
 
 ActivityGridView.prototype.render = function (activities) {

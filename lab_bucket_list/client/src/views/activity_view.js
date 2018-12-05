@@ -19,6 +19,17 @@ ActivityView.prototype.render = function (activity) {
   type.textContent = `Type: ${activity.type}`;
   tile.appendChild(type);
 
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = `Delete this activity`;
+  deleteButton.value = activity._id;
+  tile.appendChild(deleteButton);
+
+  const completed = document.createElement('button');
+  completed.textContent = `Completed`;
+  tile.appendChild(completed);
+
+
+
   this.container.appendChild(tile);
 
 };
