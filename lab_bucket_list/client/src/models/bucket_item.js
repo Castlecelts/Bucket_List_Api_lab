@@ -6,6 +6,12 @@ const BucketItem = function (url) {
   this.request = new RequestHelper(this.url);
 };
 
+BucketItem.prototype.bindEvents = function () {
+  PubSub.subscribe('ActivityFormView:form-submitted', (event) => {
+    console.log("sdssddsdsd", event.detail);
+    this.postActivity(event.detail);
+  });
+};
 
 BucketItem.prototype.getData = function () {
   this.request.get()
@@ -14,6 +20,16 @@ BucketItem.prototype.getData = function () {
   })
   .catch(console.error);
 };
+
+//post request received and publish response on channel to BucketFormView
+BucketItem.prototype.postActivity = function(activity){
+  this.request.post(activity)
+  .then((activities) => {
+    PubSub.publish('BucketItem:data-loaded', activities);
+  })
+  .catch(console.error);
+};
+
 
 
 module.exports = BucketItem;
