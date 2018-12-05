@@ -2,6 +2,8 @@
 
 **Lab Duration: All day**
 
+![alt text](bucket_list.png 'bucket_list')
+
 ### Learning Objectives
 
 - Be able to create a full-stack app
